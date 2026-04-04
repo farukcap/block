@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nisa & Emir: The Verdict</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --black: #0a0a0a;
+            --white: #ffffff;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: var(--black);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Arka plan görsel şölen efekti */
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, rgba(0, 0, 0, 1) 70%);
+            z-index: -1;
+        }
+
+        .container {
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 60px;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 1);
+            border-radius: 2px;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            position: relative;
+            height: 100px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            position: relative;
+            outline: none;
+        }
+
+        #hayir-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        #evet-btn {
+            position: absolute;
+            z-index: 1000;
+        }
+
+        #result {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #ccc;
+            height: 50px;
+            font-style: italic;
+        }
+
+        /* Lüks gold line animasyonu */
+        .line {
+            width: 50px;
+            height: 1px;
+            background: var(--gold);
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="background-overlay"></div>
+
+<div class="container">
+    <div class="line"></div>
+    <h1>Sence Nisa, Emir'i bıraktı mı?</h1>
+    <div class="line"></div>
+    
+    <div class="buttons" id="button-area">
+        <button class="btn" id="evet-btn">EVET</button>
+        <button class="btn" id="hayir-btn" onclick="showResult()">HAYIR</button>
+    </div>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    const evetBtn = document.getElementById('evet-btn');
+    const resultDiv = document.getElementById('result');
+
+    // Evet butonu kaçış algoritması
+    evetBtn.addEventListener('mouseover', () => {
+        const x = Math.random() * (window.innerWidth - evetBtn.offsetWidth);
+        const y = Math.random() * (window.innerHeight - evetBtn.offsetHeight);
+        
+        evetBtn.style.position = 'fixed';
+        evetBtn.style.left = x + 'px';
+        evetBtn.style.top = y + 'px';
+        
+        // Alttan alta dalga geçme
+        const trolls = ["Yalan söyleme!", "Emin misin?", "Kendini kandırıyorsun", "Hala mı?", "Cidden mi?"];
+        resultDiv.innerText = trolls[Math.floor(Math.random() * trolls.length)];
+    });
+
+    function showResult() {
+        document.querySelector('.container').innerHTML = `
+            <div class="line"></div>
+            <h1 style="font-size: 1.8rem;">BİZ DE ÖYLE TAHMİN EDİYORUZ.</h1>
+            <div class="line"></div>
+            <p style="line-height: 1.8; color: #aaa;">
+                Gerçekler bazen acıtır Nisa... <br> 
+                Emir'in peşinde harcadığın yılları bir kripto paraya yatırsaydın şu an Bodrum'da kendi adana sahip olurdun. <br>
+                Zirvede bırakmak bir tercihtir ama sen çoktan dağı geçtin.
+            </p>
+            <div class="line"></div>
+            <button class="btn" onclick="location.reload()" style="font-size: 0.7rem; margin-top: 20px;">TEKRAR YÜZLEŞ</button>
+        `;
+    }
+</script>
+
+</body>
+</html>
